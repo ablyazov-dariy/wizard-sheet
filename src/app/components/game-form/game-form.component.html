@@ -1,0 +1,92 @@
+<div class="">
+  <table
+    class="w-full border-collapse bg-white text-center text-sm text-gray-500"
+  >
+    <thead class="bg-gray-50">
+      <tr>
+        <th scope="col" class="px-6 py-4">
+          <!--todo: if is active + tooltip-->
+          <button (click)="playersService.addPlayer()">
+            <img
+              class="mx-auto"
+              ngSrc="/person_add.svg"
+              alt=""
+              height="32"
+              width="32"
+            />
+          </button>
+        </th>
+        @for (control of playersService.controls(); track control) {
+          <th
+            colspan="2"
+            scope="col"
+            class="px-6 py-4 font-medium capitalize text-gray-900"
+            contenteditable
+            [formControl]="control"
+          ></th>
+        }
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+      <tr>
+        <th>
+          <img
+            class="mx-auto"
+            ngSrc="/numbers.svg"
+            alt=""
+            height="24"
+            width="24"
+          />
+        </th>
+
+        @for (control of playersService.controls(); track control) {
+          <!--          TODO: Icons-->
+          <th class="px-6 py-4">
+            <img
+              class="mx-auto"
+              ngSrc="/numbers.svg"
+              alt=""
+              height="24"
+              width="24"
+            />
+          </th>
+          <th class="px-6 py-4">
+            <img
+              class="mx-auto"
+              ngSrc="/numbers.svg"
+              alt=""
+              height="24"
+              width="24"
+            />
+          </th>
+        }
+      </tr>
+
+      @for (round of [1, 2, 3]; track $index) {
+        <tr class="odd:bg-white even:bg-gray-200">
+          <th class="px-6 py-4">{{ $index + 1 }}.</th>
+          @for (round of [1, 2, 3, 4]; track $index) {
+            <th class="px-6 py-4 font-medium text-gray-900">2</th>
+            <th class="px-6 py-4 font-medium text-gray-900">1</th>
+          }
+        </tr>
+      }
+      <tr>
+        <th>
+          <!--TODO: add icon-->
+          <img
+            class="mx-auto"
+            ngSrc="/priority.svg"
+            alt=""
+            height="24"
+            width="24"
+          />
+        </th>
+
+        @for (round of [1, 2, 3, 4]; track $index) {
+          <th colspan="2" class="px-6 py-4">300</th>
+        }
+      </tr>
+    </tbody>
+  </table>
+</div>
