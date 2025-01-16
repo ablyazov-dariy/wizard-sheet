@@ -1,3 +1,91 @@
-<table
-  class="h-dvh w-full border-collapse text-center text-sm text-gray-500"
-></table>
+<table class="h-dvh w-full border-collapse text-center text-sm text-gray-500">
+  <app-game-table-head [nameControls]="game.nameControls" />
+
+  <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+    @for (round of game.roundsControls; track $index) {
+      <tr class="odd:bg-white even:bg-gray-200">
+        <th class="px-6 py-4">{{ $index + 1 }}.</th>
+        @for (wishForm of round.controls; track $index) {
+          <td>
+            <input
+              type="text"
+              inputmode="numeric"
+              pattern="[0-9]+"
+              class="py-4 text-center font-medium text-gray-900"
+              [formControl]="wishForm.controls.tricksWon"
+              [ngClass]="{
+                'bg-red-300': wishForm.controls.tricksWon.invalid,
+              }"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              inputmode="numeric"
+              pattern="[0-9]+"
+              class="py-4 text-center font-medium text-gray-900"
+              [formControl]="wishForm.controls.tricksBid"
+              [ngClass]="{
+                'bg-red-300': wishForm.controls.tricksBid.invalid,
+              }"
+            />
+          </td>
+        }
+      </tr>
+    } @empty {
+      <tr>
+        <td colspan="99" class="px-12 py-8">
+          <button
+            (click)="game.addPlayer()"
+            type="button"
+            class="rounded-lg border border-transparent bg-transparent px-5 py-2.5 text-center text-sm font-medium text-gray-700 shadow-none transition-all hover:bg-gray-100 disabled:bg-transparent disabled:text-gray-400"
+          >
+            <img
+              class="mx-auto"
+              ngSrc="/person_add.svg"
+              alt=""
+              height="40"
+              width="40"
+              priority
+            />
+            <span class="sr-only">add player</span>
+          </button>
+
+          <button
+            (click)="game.removePlayer()"
+            type="button"
+            class="rounded-lg border border-transparent bg-transparent px-5 py-2.5 text-center text-sm font-medium text-gray-700 shadow-none transition-all hover:bg-gray-100 disabled:bg-transparent disabled:text-gray-400"
+          >
+            <img
+              class="mx-auto"
+              ngSrc="/person_remove.svg"
+              alt=""
+              height="40"
+              width="40"
+              priority
+            />
+            <span class="sr-only">remove player</span>
+          </button>
+
+          <button
+            (click)="game.startGame()"
+            type="button"
+            class="rounded-lg border border-transparent bg-transparent px-5 py-2.5 text-center text-sm font-medium text-gray-700 shadow-none transition-all hover:bg-gray-100 disabled:bg-transparent disabled:text-gray-400"
+          >
+            <img
+              class="mx-auto"
+              ngSrc="/start.svg"
+              alt=""
+              height="40"
+              width="40"
+              priority
+            />
+            <span class="sr-only">start game</span>
+          </button>
+        </td>
+      </tr>
+    }
+  </tbody>
+
+  <app-game-table-foot [results]="[]" />
+</table>

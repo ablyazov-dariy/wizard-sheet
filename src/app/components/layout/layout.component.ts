@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { GameFormComponent } from '../game-form/game-form.component';
+import { GameTableComponent } from '../game-table/game-table.component';
 
 @Component({
   selector: 'app-layout',
-  imports: [GameFormComponent],
+  imports: [GameTableComponent],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
 })

@@ -7,7 +7,7 @@ import { FormArray, FormControl, Validators } from '@angular/forms';
 export class PlayersService {
   private form = this.createForm();
 
-  public controls() {
+  get controls() {
     return this.form.controls;
   }
 

@@ -1,11 +1,23 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { GameFormComponent } from '../game-form/game-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GameService } from '../../services/game/game.service';
+import { GameTableFootComponent } from '../game-table-foot/game-table-foot.component';
+import { GameTableHeadComponent } from '../game-table-head/game-table-head.component';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-game-table',
-  imports: [FormsModule, GameFormComponent],
+  imports: [
+    FormsModule,
+    GameTableFootComponent,
+    GameTableHeadComponent,
+    NgOptimizedImage,
+    ReactiveFormsModule,
+    NgClass,
+  ],
   templateUrl: './game-table.component.html',
   styleUrl: './game-table.component.scss',
 })
-export class GameTableComponent {}
+export class GameTableComponent {
+  constructor(protected game: GameService) {}
+}
