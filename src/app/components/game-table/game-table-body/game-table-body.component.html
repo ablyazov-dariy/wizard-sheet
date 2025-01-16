@@ -10,7 +10,7 @@
           class="py-4 text-center font-medium text-gray-900"
           [formControl]="wishForm.controls.tricksWon"
           [ngClass]="{
-            'bg-red-300': wishForm.controls.tricksWon.invalid,
+            '!bg-red-300': wishForm.controls.tricksWon.invalid,
           }"
         />
       </td>
@@ -22,7 +22,7 @@
           class="py-4 text-center font-medium text-gray-900"
           [formControl]="wishForm.controls.tricksBid"
           [ngClass]="{
-            'bg-red-300': wishForm.controls.tricksBid.invalid,
+            '!bg-red-300': wishForm.controls.tricksBid.invalid,
           }"
         />
       </td>
