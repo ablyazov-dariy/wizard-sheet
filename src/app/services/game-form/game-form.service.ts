@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Trick } from '../../interfaces/trick.interface';
-import { FormControls } from '../../interfaces/util/form-controls.type';
+import { Trick } from '@interfaces/trick.interface';
+import { FormControls } from '@interfaces/util/form-controls.type';
 
 @Injectable({
   providedIn: 'root',

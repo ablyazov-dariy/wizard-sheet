@@ -6,8 +6,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { GameStarterComponent } from './game-starter/game-starter.component';
-import { FormControls } from '../../../interfaces/util/form-controls.type';
-import { Trick } from '../../../interfaces/trick.interface';
+import { FormControls } from '@interfaces/util/form-controls.type';
+import { Trick } from '@interfaces/trick.interface';
 import { NgClass } from '@angular/common';
 
 @Component({

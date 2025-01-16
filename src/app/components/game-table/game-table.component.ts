@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GameService } from '../../services/game/game.service';
+import { GameService } from '@services/game/game.service';
 import { GameTableFootComponent } from './game-table-foot/game-table-foot.component';
 import { GameTableHeadComponent } from './game-table-head/game-table-head.component';
 import { GameTableBodyComponent } from './game-table-body/game-table-body.component';

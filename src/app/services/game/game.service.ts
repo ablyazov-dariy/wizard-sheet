@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { PlayersService } from '../players/players.service';
 import { GameFormService } from '../game-form/game-form.service';
-import { FormControls } from '../../interfaces/util/form-controls.type';
-import { Trick } from '../../interfaces/trick.interface';
+import { FormControls } from '@interfaces/util/form-controls.type';
+import { Trick } from '@interfaces/trick.interface';
 
 @Injectable({
   providedIn: 'root',
