@@ -9,10 +9,16 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { GameFormService } from '../../services/game-form/game-form.service';
+import { GameTableFootComponent } from '../game-table-foot/game-table-foot.component';
 
 @Component({
   selector: 'app-game-form',
-  imports: [NgOptimizedImage, ReactiveFormsModule, CommonModule],
+  imports: [
+    NgOptimizedImage,
+    ReactiveFormsModule,
+    CommonModule,
+    GameTableFootComponent,
+  ],
   templateUrl: './game-form.component.html',
   styleUrl: './game-form.component.scss',
 })
