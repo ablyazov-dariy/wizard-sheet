@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GameService } from '../../services/game/game.service';
-import { GameTableFootComponent } from '../game-table-foot/game-table-foot.component';
-import { GameTableHeadComponent } from '../game-table-head/game-table-head.component';
-import { NgClass } from '@angular/common';
-import { GameStarterComponent } from '../game-starter/game-starter.component';
+import { GameTableFootComponent } from './game-table-foot/game-table-foot.component';
+import { GameTableHeadComponent } from './game-table-head/game-table-head.component';
+import { GameTableBodyComponent } from './game-table-body/game-table-body.component';
 
 @Component({
   selector: 'app-game-table',
@@ -13,8 +12,7 @@ import { GameStarterComponent } from '../game-starter/game-starter.component';
     GameTableFootComponent,
     GameTableHeadComponent,
     ReactiveFormsModule,
-    NgClass,
-    GameStarterComponent,
+    GameTableBodyComponent,
   ],
   templateUrl: './game-table.component.html',
   styleUrl: './game-table.component.scss',
