@@ -1,0 +1,30 @@
+<tr>
+  <th class="relative px-6 py-4">
+    <!--TODO: add menu-->
+    <img class="mx-auto" ngSrc="/person.svg" alt="" fill priority />
+  </th>
+  @for (control of nameControls(); track control) {
+    <th colspan="2">
+      <input
+        type="text"
+        class="px-6 py-4 font-medium capitalize text-gray-900"
+        [formControl]="control"
+      />
+    </th>
+  }
+</tr>
+
+<tr>
+  <th class="relative px-6 py-2">
+    <img class="mx-auto" ngSrc="/numbers.svg" alt="" fill />
+  </th>
+
+  @for (_ of nameControls(); track _) {
+    <th class="relative px-6 py-2">
+      <img class="mx-auto" ngSrc="/style.svg" alt="" fill />
+    </th>
+    <th class="relative px-6 py-2">
+      <img class="mx-auto" ngSrc="/edit.svg" alt="" fill />
+    </th>
+  }
+</tr>

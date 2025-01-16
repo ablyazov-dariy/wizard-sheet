@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { GameFormService } from '../../services/game-form/game-form.service';
 import { GameTableFootComponent } from '../game-table-foot/game-table-foot.component';
+import { GameTableHeadComponent } from '../game-table-head/game-table-head.component';
 
 @Component({
   selector: 'app-game-form',
@@ -18,6 +19,7 @@ import { GameTableFootComponent } from '../game-table-foot/game-table-foot.compo
     ReactiveFormsModule,
     CommonModule,
     GameTableFootComponent,
+    GameTableHeadComponent,
   ],
   templateUrl: './game-form.component.html',
   styleUrl: './game-form.component.scss',

@@ -1,4 +1,7 @@
-table,
+:host {
+  display: table-header-group;
+}
+
 th,
 td {
   border: 1px solid black;
