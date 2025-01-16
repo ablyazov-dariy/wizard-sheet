@@ -1,92 +1,146 @@
-<div class="">
-  <table
-    class="w-full border-collapse bg-white text-center text-sm text-gray-500"
-  >
+<div>
+  <table class="h-dvh w-full border-collapse text-center text-sm text-gray-500">
     <thead class="bg-gray-50">
       <tr>
-        <th scope="col" class="px-6 py-4">
-          <!--todo: if is active + tooltip-->
-          <button (click)="playersService.addPlayer()">
-            <img
-              class="mx-auto"
-              ngSrc="/person_add.svg"
-              alt=""
-              height="32"
-              width="32"
-            />
-          </button>
+        <th class="px-6 py-4">
+          <img
+            class="mx-auto"
+            ngSrc="/person.svg"
+            alt=""
+            height="24"
+            width="24"
+          />
         </th>
         @for (control of playersService.controls(); track control) {
           <th
             colspan="2"
-            scope="col"
             class="px-6 py-4 font-medium capitalize text-gray-900"
             contenteditable
             [formControl]="control"
           ></th>
         }
       </tr>
-    </thead>
-    <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+
       <tr>
-        <th>
+        <th class="px-6 py-2">
           <img
             class="mx-auto"
             ngSrc="/numbers.svg"
             alt=""
-            height="24"
-            width="24"
+            height="16"
+            width="16"
           />
         </th>
 
-        @for (control of playersService.controls(); track control) {
-          <!--          TODO: Icons-->
-          <th class="px-6 py-4">
+        @for (_ of playersService.controls(); track _) {
+          <th class="px-6 py-2">
             <img
               class="mx-auto"
-              ngSrc="/numbers.svg"
+              ngSrc="/style.svg"
               alt=""
-              height="24"
-              width="24"
+              height="16"
+              width="16"
             />
           </th>
-          <th class="px-6 py-4">
+          <th class="px-6 py-2">
             <img
               class="mx-auto"
-              ngSrc="/numbers.svg"
+              ngSrc="/edit.svg"
               alt=""
-              height="24"
-              width="24"
+              height="16"
+              width="16"
             />
           </th>
         }
       </tr>
+    </thead>
 
-      @for (round of [1, 2, 3]; track $index) {
+    <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+      @for (round of this.mainForm?.controls; track $index) {
         <tr class="odd:bg-white even:bg-gray-200">
           <th class="px-6 py-4">{{ $index + 1 }}.</th>
-          @for (round of [1, 2, 3, 4]; track $index) {
-            <th class="px-6 py-4 font-medium text-gray-900">2</th>
-            <th class="px-6 py-4 font-medium text-gray-900">1</th>
+          @for (wishForm of round.controls; track $index) {
+            <td
+              class="px-6 py-4 font-medium text-gray-900"
+              contenteditable
+              [formControl]="wishForm.controls.actual"
+            >
+              2
+            </td>
+            <td
+              class="px-6 py-4 font-medium text-gray-900"
+              contenteditable
+              [formControl]="wishForm.controls.wish"
+            >
+              1
+            </td>
           }
         </tr>
-      }
-      <tr>
-        <th>
-          <!--TODO: add icon-->
-          <img
-            class="mx-auto"
-            ngSrc="/priority.svg"
-            alt=""
-            height="24"
-            width="24"
-          />
-        </th>
+      } @empty {
+        <tr>
+          <td colspan="99" class="px-12 py-8">
+            <button
+              (click)="playersService.addPlayer()"
+              type="button"
+              class="rounded-lg border border-transparent bg-transparent px-5 py-2.5 text-center text-sm font-medium text-gray-700 shadow-none transition-all hover:bg-gray-100 disabled:bg-transparent disabled:text-gray-400"
+            >
+              <img
+                class="mx-auto"
+                ngSrc="/person_add.svg"
+                alt=""
+                height="40"
+                width="40"
+              />
+            </button>
 
-        @for (round of [1, 2, 3, 4]; track $index) {
-          <th colspan="2" class="px-6 py-4">300</th>
-        }
-      </tr>
+            <button
+              (click)="playersService.removePlayer()"
+              type="button"
+              class="rounded-lg border border-transparent bg-transparent px-5 py-2.5 text-center text-sm font-medium text-gray-700 shadow-none transition-all hover:bg-gray-100 disabled:bg-transparent disabled:text-gray-400"
+            >
+              <img
+                class="mx-auto"
+                ngSrc="/person_remove.svg"
+                alt=""
+                height="40"
+                width="40"
+              />
+            </button>
+
+            <button
+              (click)="startGame()"
+              type="button"
+              class="rounded-lg border border-transparent bg-transparent px-5 py-2.5 text-center text-sm font-medium text-gray-700 shadow-none transition-all hover:bg-gray-100 disabled:bg-transparent disabled:text-gray-400"
+            >
+              <img
+                class="mx-auto"
+                ngSrc="/start.svg"
+                alt=""
+                height="40"
+                width="40"
+              />
+            </button>
+          </td>
+        </tr>
+      }
     </tbody>
+
+    <tfoot class="divide-y divide-gray-100 border-t border-gray-100">
+      <th>
+        <!--TODO: add icon-->
+        <img
+          class="mx-auto"
+          ngSrc="/priority.svg"
+          alt=""
+          height="24"
+          width="24"
+        />
+      </th>
+      @for (_ of []; track $index) {
+        <th colspan="2" class="px-6 py-4">300</th>
+      } @empty {
+        <td colspan="99" class="px-6 py-4">Results</td>
+      }
+    </tfoot>
   </table>
 </div>

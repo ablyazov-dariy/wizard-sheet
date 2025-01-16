@@ -16,8 +16,9 @@ export class PlayersService {
       this.form.push(new FormControl('', Validators.required));
   }
 
-  public removePlayer(index: number) {
-    if (index > 3) this.form.removeAt(index);
+  public removePlayer(index?: number) {
+    index = index ?? this.form.length - 1;
+    if (index >= 3) this.form.removeAt(index);
   }
 
   public reset() {

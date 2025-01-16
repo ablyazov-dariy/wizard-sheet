@@ -2,7 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contenteditable-accessor';
 import { NgOptimizedImage } from '@angular/common';
 import { PlayersService } from '../../services/players/players.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { MainFormService } from '../../services/main-form/main-form.service';
 
 @Component({
   selector: 'app-game-form',
@@ -15,9 +21,28 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrl: './game-form.component.scss',
 })
 export class GameFormComponent implements OnInit {
-  constructor(public playersService: PlayersService) {}
+  mainForm?: FormArray<
+    FormArray<
+      FormGroup<{
+        wish: FormControl;
+        actual: FormControl;
+      }>
+    >
+  >;
+  constructor(
+    public playersService: PlayersService,
+    private mainFormService: MainFormService,
+  ) {}
 
   ngOnInit() {
     this.playersService.controls()[0].valueChanges.subscribe(console.log);
+  }
+
+  protected readonly Array = Array;
+
+  startGame() {
+    this.mainForm = this.mainFormService.getForm(
+      this.playersService.controls().length,
+    );
   }
 }
