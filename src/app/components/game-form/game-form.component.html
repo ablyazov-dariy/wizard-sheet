@@ -12,12 +12,13 @@
           />
         </th>
         @for (control of playersService.controls(); track control) {
-          <th
-            colspan="2"
-            class="px-6 py-4 font-medium capitalize text-gray-900"
-            contenteditable
-            [formControl]="control"
-          ></th>
+          <th colspan="2">
+            <input
+              type="text"
+              class="px-6 py-4 font-medium capitalize text-gray-900"
+              [formControl]="control"
+            />
+          </th>
         }
       </tr>
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contenteditable-accessor';
+
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { PlayersService } from '../../services/players/players.service';
 import {
@@ -12,12 +12,7 @@ import { GameFormService } from '../../services/game-form/game-form.service';
 
 @Component({
   selector: 'app-game-form',
-  imports: [
-    ContenteditableValueAccessorModule,
-    NgOptimizedImage,
-    ReactiveFormsModule,
-    CommonModule,
-  ],
+  imports: [NgOptimizedImage, ReactiveFormsModule, CommonModule],
   templateUrl: './game-form.component.html',
   styleUrl: './game-form.component.scss',
 })
