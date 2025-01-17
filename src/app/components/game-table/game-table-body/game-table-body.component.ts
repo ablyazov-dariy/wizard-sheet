@@ -18,4 +18,20 @@ import { NgClass } from '@angular/common';
 })
 export class GameTableBodyComponent {
   roundsControls = input<FormArray<FormGroup<FormControls<Trick>>>[]>();
+
+  tricksBidTabIndex(row: number): number {
+    if (row % 2 !== 0) {
+      return row * 2 + 2;
+    } else {
+      return row * 2 + 1;
+    }
+  }
+
+  tricksWonTabIndex(row: number): number {
+    if (row % 2 !== 0) {
+      return row * 2 + 3;
+    } else {
+      return row * 2 + 2;
+    }
+  }
 }

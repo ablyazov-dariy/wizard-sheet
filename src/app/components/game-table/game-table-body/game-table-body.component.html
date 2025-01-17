@@ -1,13 +1,15 @@
 @for (round of roundsControls(); track $index) {
+  @let rowIndex = $index;
   <tr class="odd:bg-white even:bg-gray-200">
     <th class="px-6 py-4">{{ $index + 1 }}.</th>
     @for (wishForm of round.controls; track $index) {
       <td>
         <input
+          [tabindex]="tricksWonTabIndex(rowIndex)"
           type="text"
           inputmode="numeric"
           pattern="[0-9]+"
-          class="py-4 text-center font-medium text-gray-900"
+          class="py-4 text-center font-medium text-gray-900 focus:bg-green-300 active:bg-green-300"
           [formControl]="wishForm.controls.tricksWon"
           [ngClass]="{
             '!bg-red-300': wishForm.controls.tricksWon.invalid,
@@ -16,10 +18,12 @@
       </td>
       <td>
         <input
+          [tabindex]="tricksBidTabIndex(rowIndex)"
+          autofocus
           type="text"
           inputmode="numeric"
           pattern="[0-9]+"
-          class="py-4 text-center font-medium text-gray-900"
+          class="py-4 text-center font-medium text-gray-900 focus:bg-primary-300 active:bg-primary-300"
           [formControl]="wishForm.controls.tricksBid"
           [ngClass]="{
             '!bg-red-300': wishForm.controls.tricksBid.invalid,

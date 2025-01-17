@@ -15,5 +15,4 @@ input {
   outline: none;
 
   transition: background-color 200ms linear;
-  @apply focus:bg-primary-300 active:bg-primary-300;
 }
