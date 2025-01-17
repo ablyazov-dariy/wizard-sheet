@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import { fromEvent, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocalStorageService {
-  notifier = fromEvent(window, 'storage') as Observable<StorageEvent>;
-
   getItem<T>(key: string): T | Error | null {
     const str = localStorage.getItem(key) ?? 'null';
     try {
@@ -26,9 +23,5 @@ export class LocalStorageService {
 
   removeItem(key: string): void {
     localStorage.removeItem(key);
-  }
-
-  clearAll(): void {
-    localStorage.clear();
   }
 }
