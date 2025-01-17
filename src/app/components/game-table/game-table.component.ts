@@ -4,6 +4,7 @@ import { GameService } from '@services/game/game.service';
 import { GameTableFootComponent } from './game-table-foot/game-table-foot.component';
 import { GameTableHeadComponent } from './game-table-head/game-table-head.component';
 import { GameTableBodyComponent } from './game-table-body/game-table-body.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-game-table',
@@ -13,6 +14,7 @@ import { GameTableBodyComponent } from './game-table-body/game-table-body.compon
     GameTableHeadComponent,
     ReactiveFormsModule,
     GameTableBodyComponent,
+    AsyncPipe,
   ],
   templateUrl: './game-table.component.html',
   styleUrl: './game-table.component.scss',

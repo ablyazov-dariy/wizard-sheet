@@ -3,5 +3,5 @@
 
   <app-game-table-body [roundsControls]="game.roundsControls" />
 
-  <app-game-table-foot [results]="[]" />
+  <app-game-table-foot [results]="(game.results$ | async)!" />
 </table>

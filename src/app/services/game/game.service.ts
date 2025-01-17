@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import { PlayersService } from '../players/players.service';
 import { GameFormService } from '../game-form/game-form.service';
-import { map } from 'rxjs';
+import { map, Observable, startWith } from 'rxjs';
 import { GamePtsCalculatorService } from '@services/game-pts-calculator/game-pts-calculator.service';
 import { GameForm } from '@interfaces/game-form.type';
 
@@ -11,6 +11,8 @@ import { GameForm } from '@interfaces/game-form.type';
 })
 export class GameService {
   public gameFormArray: GameForm = new FormArray<FormArray>([]);
+
+  private _results$?: Observable<number[]>;
 
   constructor(
     private playersService: PlayersService,
@@ -27,6 +29,16 @@ export class GameService {
   }
   get roundsControls() {
     return this.gameFormArray?.controls;
+  }
+
+  get results$() {
+    if (!this._results$) {
+      this._results$ = this.gameFormArray.valueChanges.pipe(
+        map(data => this.ptsCalculatorService.calculate(data)),
+        startWith([]),
+      );
+    }
+    return this._results$;
   }
 
   public addPlayer() {
