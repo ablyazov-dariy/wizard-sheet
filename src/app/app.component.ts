@@ -7,6 +7,4 @@ import { LayoutComponent } from '@components/layout/layout.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'wizz-sheet';
-}
+export class AppComponent {}

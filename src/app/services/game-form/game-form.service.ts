@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Trick } from '@interfaces/trick.interface';
 import { FormControls } from '@interfaces/util/form-controls.type';
 
@@ -10,9 +10,13 @@ export class GameFormService {
   private fb = inject(FormBuilder);
 
   public initForm(players: number, patchValue?: Trick[][]) {
+    // TODO: config?
     const CARDS = 60;
     const rounds = CARDS / players;
-    const formArr = this.fb.array([this.createTricksFormArray(players)]);
+
+    const formArr = this.fb.array(
+      [] as FormArray<FormGroup<FormControls<Trick>>>[],
+    );
 
     while (formArr.length < rounds) {
       formArr.push(this.createTricksFormArray(players));
@@ -26,11 +30,7 @@ export class GameFormService {
   }
 
   private createTricksFormArray(players: number) {
-    const formArr = this.fb.array([
-      this.createTricksForm(),
-      this.createTricksForm(),
-      this.createTricksForm(),
-    ]);
+    const formArr = this.fb.array([] as FormGroup<FormControls<Trick>>[]);
 
     while (formArr.length < players) {
       formArr.push(this.createTricksForm());

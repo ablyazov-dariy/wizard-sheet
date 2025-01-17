@@ -1,4 +1,4 @@
 export interface Trick {
-  tricksBid: number;
-  tricksWon: number;
+  tricksBid: number | null;
+  tricksWon: number | null;
 }
