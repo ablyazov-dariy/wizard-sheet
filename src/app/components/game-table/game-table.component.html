@@ -1,5 +1,7 @@
 <table class="h-dvh w-full border-collapse text-center text-sm text-gray-500">
-  <app-game-table-head [nameControls]="game.nameControls" />
+  <app-game-table-head [nameControls]="game.nameControls">
+    <ng-content />
+  </app-game-table-head>
 
   <app-game-table-body [roundsControls]="game.roundsControls" />
 
