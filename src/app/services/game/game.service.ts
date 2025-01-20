@@ -52,4 +52,7 @@ export class GameService {
       this.playersService.controls.length,
     );
   }
+  public endGame() {
+    this.gameFormArray.clear();
+  }
 }
