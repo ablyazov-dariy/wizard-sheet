@@ -5,6 +5,7 @@
     @for (wishForm of round.controls; track $index) {
       <td>
         <input
+          appPreventInvalidInput="^(\d+|)$"
           [tabindex]="tricksWonTabIndex(rowIndex)"
           type="text"
           inputmode="numeric"
@@ -17,6 +18,7 @@
       </td>
       <td>
         <input
+          appPreventInvalidInput="^(\d+|)$"
           [tabindex]="tricksBidTabIndex(rowIndex)"
           autofocus
           type="text"
