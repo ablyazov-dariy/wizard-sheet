@@ -11,9 +11,11 @@
       <span>Menu</span>
     </mat-toolbar>
     <mat-nav-list>
-      <button (click)="endGame()" mat-list-item>End Game</button>
       <a mat-list-item href="#">Link 2</a>
       <a mat-list-item href="#">Link 3</a>
+      @if (showEndGame) {
+        <button (click)="endGame()" mat-list-item>End Game</button>
+      }
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

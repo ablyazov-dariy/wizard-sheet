@@ -41,6 +41,10 @@ export class LayoutComponent {
       shareReplay(),
     );
 
+  get showEndGame() {
+    return this.gameService.gameFormArray.length;
+  }
+
   endGame() {
     const dialogRef = this.dialog.open(EndGameConfirmDialogComponent, {
       width: '250px',
