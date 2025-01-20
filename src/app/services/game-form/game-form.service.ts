@@ -14,8 +14,10 @@ export class GameFormService {
     const CARDS = 60;
     const rounds = CARDS / players;
 
+    let round = 1;
+
     while (form.length < rounds) {
-      form.push(this.createTricksFormArray(players), {
+      form.push(this.createTricksFormArray(players, round++), {
         emitEvent: form.length >= rounds - 1,
       });
     }
@@ -25,20 +27,34 @@ export class GameFormService {
     }
   }
 
-  private createTricksFormArray(players: number) {
+  private createTricksFormArray(players: number, round: number) {
     const formArr = this.fb.array([] as FormGroup<FormControls<Trick>>[]);
 
     while (formArr.length < players) {
-      formArr.push(this.createTricksForm());
+      formArr.push(this.createTricksForm(round));
     }
 
     return formArr;
   }
 
-  private createTricksForm() {
+  private createTricksForm(round: number) {
     return this.fb.group({
-      tricksBid: [null, [Validators.min(0), Validators.pattern(/^\d+$/)]],
-      tricksWon: [null, []],
+      tricksBid: [
+        null,
+        [
+          Validators.min(0),
+          Validators.pattern(/^(\d+|)$/),
+          Validators.max(round),
+        ],
+      ],
+      tricksWon: [
+        null,
+        [
+          Validators.min(0),
+          Validators.pattern(/^(\d+|)$/),
+          Validators.max(round),
+        ],
+      ],
     }) as FormGroup<FormControls<Trick>>;
   }
 }

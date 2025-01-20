@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import { PlayersService } from '../players/players.service';
 import { GameFormService } from '../game-form/game-form.service';
-import { map, Observable, startWith } from 'rxjs';
+import { filter, map, Observable, startWith } from 'rxjs';
 import { GamePtsCalculatorService } from '@services/game-pts-calculator/game-pts-calculator.service';
 import { GameForm } from '@interfaces/game-form.type';
 
@@ -18,11 +18,7 @@ export class GameService {
     private playersService: PlayersService,
     private gameFormService: GameFormService,
     private ptsCalculatorService: GamePtsCalculatorService,
-  ) {
-    this.gameFormArray.valueChanges
-      .pipe(map(data => this.ptsCalculatorService.calculate(data)))
-      .subscribe(console.log);
-  }
+  ) {}
 
   get nameControls() {
     return this.playersService.controls;
@@ -34,6 +30,7 @@ export class GameService {
   get results$() {
     if (!this._results$) {
       this._results$ = this.gameFormArray.valueChanges.pipe(
+        filter(() => this.gameFormArray.valid),
         map(data => this.ptsCalculatorService.calculate(data)),
         startWith([]),
       );

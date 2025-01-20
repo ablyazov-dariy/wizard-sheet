@@ -8,7 +8,6 @@
           [tabindex]="tricksWonTabIndex(rowIndex)"
           type="text"
           inputmode="numeric"
-          pattern="[0-9]+"
           class="py-4 text-center font-medium text-gray-900 focus:bg-green-300 active:bg-green-300"
           [formControl]="wishForm.controls.tricksWon"
           [ngClass]="{
@@ -22,7 +21,6 @@
           autofocus
           type="text"
           inputmode="numeric"
-          pattern="[0-9]+"
           class="py-4 text-center font-medium text-gray-900 focus:bg-primary-300 active:bg-primary-300"
           [formControl]="wishForm.controls.tricksBid"
           [ngClass]="{
