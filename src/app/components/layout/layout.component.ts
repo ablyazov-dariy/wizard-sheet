@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { GameTableComponent } from '@components/game-table/game-table.component';
 import { GameService } from '@services/game/game.service';
@@ -47,11 +47,14 @@ export class LayoutComponent {
 
   endGame() {
     const dialogRef = this.dialog.open(EndGameConfirmDialogComponent, {
-      width: '250px',
+      width: 'min(100%, 500px)',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.gameService.endGame();
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(take(1))
+      .subscribe(result => {
+        if (result) this.gameService.endGame();
+      });
   }
 }

@@ -1,6 +1,45 @@
-<h2 mat-dialog-title>End game</h2>
-<mat-dialog-content> Would you like to end this game? </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="false">No</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Yes</button>
-</mat-dialog-actions>
+<div class="relative p-6">
+  <div class="flex gap-4">
+    <div
+      class="flex h-10 w-10 items-center justify-center rounded-full bg-yellow-100 text-yellow-500"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="h-6 w-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12"
+        />
+      </svg>
+    </div>
+    <div class="flex-1">
+      <h3 class="text-lg font-medium text-secondary-900">End Game?</h3>
+      <div class="mt-2 text-sm text-secondary-500">
+        You are about to end the game. Your progress will not be saved and you
+        cannot undo this action. Are you sure you want to quit?
+      </div>
+    </div>
+  </div>
+  <div class="mt-6 flex justify-end gap-3">
+    <button
+      [mat-dialog-close]="false"
+      type="button"
+      class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-100 focus:ring focus:ring-gray-100 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-50 disabled:text-gray-400"
+    >
+      Wait, No!
+    </button>
+    <button
+      [mat-dialog-close]="true"
+      type="button"
+      class="rounded-lg border border-red-500 bg-red-500 px-4 py-2 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-red-700 hover:bg-red-700 focus:ring focus:ring-red-200 disabled:cursor-not-allowed disabled:border-red-300 disabled:bg-red-300"
+    >
+      I'm Sure!
+    </button>
+  </div>
+</div>
