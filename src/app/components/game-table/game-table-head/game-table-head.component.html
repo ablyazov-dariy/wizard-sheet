@@ -1,6 +1,13 @@
 <tr>
   <th class="relative px-6 py-4">
-    <ng-content />
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+      @if (showEndGame) {
+        <button (click)="endGame()" mat-menu-item>End Game</button>
+      }
+    </mat-menu>
   </th>
   @for (control of nameControls(); track control) {
     <th colspan="2">
