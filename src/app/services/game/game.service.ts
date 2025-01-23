@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import { PlayersService } from '../players/players.service';
 import { GameFormService } from '../game-form/game-form.service';
@@ -11,6 +11,7 @@ import { GameForm } from '@interfaces/game-form.type';
 })
 export class GameService {
   public gameFormArray: GameForm = new FormArray<FormArray>([]);
+  public showPlayersAlert = signal(0);
 
   private _results$?: Observable<number[]>;
 
@@ -47,12 +48,19 @@ export class GameService {
   }
 
   public startGame() {
+    if (!this.playersService.isValid()) {
+      this.showPlayersAlert.set(Math.random());
+      return;
+    }
+    this.showPlayersAlert.set(0);
+    this.playersService.disable();
     this.gameFormService.initForm(
       this.gameFormArray,
       this.playersService.controls.length,
     );
   }
   public endGame() {
+    this.playersService.enable();
     this.gameFormArray.clear();
   }
 }

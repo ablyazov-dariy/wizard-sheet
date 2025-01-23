@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, linkedSignal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
@@ -26,6 +26,15 @@ import { take } from 'rxjs';
 })
 export class GameTableHeadComponent {
   public nameControls = input.required<FormControl<string | null>[]>();
+  public showAlertInput = input.required<number>({
+    alias: 'showAlert',
+  });
+
+  public showAlert = linkedSignal(() => {
+    console.log('showAlert');
+    return this.showAlertInput();
+  });
+
   readonly dialog = inject(MatDialog);
   private gameService = inject(GameService);
 
@@ -44,5 +53,9 @@ export class GameTableHeadComponent {
       .subscribe(result => {
         if (result) this.gameService.endGame();
       });
+  }
+
+  closeAlert() {
+    this.showAlert.set(0);
   }
 }

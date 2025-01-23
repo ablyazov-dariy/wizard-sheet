@@ -25,12 +25,16 @@ export class PlayersService {
     this.form.reset();
   }
 
-  private disable() {
+  public disable() {
     this.form.disable();
   }
 
-  private enable() {
+  public enable() {
     this.form.enable();
+  }
+
+  public isValid(): boolean {
+    return this.form.valid;
   }
 
   private createForm() {
