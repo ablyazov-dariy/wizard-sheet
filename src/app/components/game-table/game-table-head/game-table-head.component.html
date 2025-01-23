@@ -2,10 +2,20 @@
   <th class="relative px-6 py-4">
     <button mat-button [matMenuTriggerFor]="menu">Menu</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
+      <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        Game config
+      </button>
+      <a href="#" target="_blank" mat-menu-item>
+        <!--TODO: ADD Link-->
+        <mat-icon>help</mat-icon>
+        How to play
+      </a>
       @if (showEndGame) {
-        <button (click)="endGame()" mat-menu-item>End Game</button>
+        <button (click)="endGame()" mat-menu-item>
+          <mat-icon>assignment_late</mat-icon>
+          End game
+        </button>
       }
     </mat-menu>
   </th>

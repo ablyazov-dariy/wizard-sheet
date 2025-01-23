@@ -1,11 +1,15 @@
 import { Component, inject, input } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+
 import { GameService } from '@services/game/game.service';
 import { EndGameConfirmDialogComponent } from '@components/end-game-confirm-dialog/end-game-confirm-dialog.component';
+
 import { take } from 'rxjs';
 
 @Component({
@@ -15,6 +19,7 @@ import { take } from 'rxjs';
     NgOptimizedImage,
     MatMenuModule,
     MatButtonModule,
+    MatIconModule,
   ],
   templateUrl: './game-table-head.component.html',
   styleUrl: './game-table-head.component.scss',
