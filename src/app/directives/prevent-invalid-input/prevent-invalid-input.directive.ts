@@ -18,12 +18,7 @@ export class PreventInvalidInputDirective {
   }
 
   @HostListener('input', ['$event.target']) onInput(input: HTMLInputElement) {
-    console.log(this.pattern());
-    console.log(
-      `"${input.value}" matches: ${this.pattern().test(input.value)}`,
-    );
     if (this.pattern().test(input.value)) return;
-
     this.el.nativeElement.value = this.beforeValue ?? '';
   }
 }

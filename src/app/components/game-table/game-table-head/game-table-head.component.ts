@@ -8,10 +8,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
 import { GameService } from '@services/game/game.service';
-import { EndGameConfirmDialogComponent } from '@components/end-game-confirm-dialog/end-game-confirm-dialog.component';
+import { EndGameConfirmDialogComponent } from '@components/dialogs/end-game-confirm-dialog/end-game-confirm-dialog.component';
 
 import { take } from 'rxjs';
-import { GameConfigFormDialogComponent } from '@components/game-config-form-dialog/game-config-form-dialog.component';
+import { GameConfigFormDialogComponent } from '@components/dialogs/game-config-form-dialog/game-config-form-dialog.component';
 
 @Component({
   selector: 'app-game-table-head',
@@ -26,21 +26,19 @@ import { GameConfigFormDialogComponent } from '@components/game-config-form-dial
   styleUrl: './game-table-head.component.scss',
 })
 export class GameTableHeadComponent {
+  // todo: refactor
   public nameControls = input.required<FormControl<string | null>[]>();
   public showAlertInput = input.required<number>({
     alias: 'showAlert',
   });
 
-  public showAlert = linkedSignal(() => {
-    console.log('showAlert');
-    return this.showAlertInput();
-  });
+  public showAlert = linkedSignal(() => this.showAlertInput());
 
   readonly dialog = inject(MatDialog);
   private gameService = inject(GameService);
 
   get showEndGame() {
-    return this.gameService.gameFormArray.length;
+    return this.gameService.form.length;
   }
 
   endGame() {

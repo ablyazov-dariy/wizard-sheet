@@ -1,4 +1,4 @@
-export interface GameConfigInterface {
+export interface GameConfig {
   baseScore: number; // Base score for a correct bid (default: 20)
   trickValue: number; // Points per trick won (WAL) (default: 10)
 

@@ -24,4 +24,10 @@ export class LocalStorageService {
   removeItem(key: string): void {
     localStorage.removeItem(key);
   }
+
+  handleStorageErrors<T>(stored: unknown): stored is T | null {
+    if (!(stored instanceof Error)) return true;
+
+    throw stored as Error;
+  }
 }

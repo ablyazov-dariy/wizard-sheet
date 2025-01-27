@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GameConfigInterface } from '@interfaces/game-config.interface';
+import { GameConfig } from '@interfaces/game-config.interface';
 import { LocalStorageService } from '@services/local-storage/local-storage.service';
 import { distinctUntilChanged, map, Observable, startWith, tap } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -9,8 +9,8 @@ import { FormControls } from '@interfaces/util/form-controls.type';
   providedIn: 'root',
 })
 export class GameConfigService {
-  public config$: Observable<GameConfigInterface>;
-  public form: FormGroup<FormControls<GameConfigInterface>>;
+  public config$: Observable<GameConfig>;
+  public form: FormGroup<FormControls<GameConfig>>;
 
   private readonly accessKey = 'GAME_CONFIG';
 
@@ -49,18 +49,10 @@ export class GameConfigService {
   }
 
   private patchStoredValue() {
-    const storedConfig = this.ls.getItem<GameConfigInterface>(this.accessKey);
+    const storedConfig = this.ls.getItem<GameConfig>(this.accessKey);
 
-    if (this.handleStorageErrors(storedConfig) && storedConfig) {
+    if (this.ls.handleStorageErrors<GameConfig>(storedConfig) && storedConfig) {
       this.form.patchValue(storedConfig);
     }
-  }
-
-  private handleStorageErrors(
-    stored: unknown,
-  ): stored is GameConfigInterface | null {
-    if (!(stored instanceof Error)) return true;
-
-    throw stored as Error;
   }
 }
