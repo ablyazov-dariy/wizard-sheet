@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { FormArray } from '@angular/forms';
-import { PlayersService } from '../players/players.service';
-import { GameFormService } from '../game-form/game-form.service';
+import { PlayersService } from '@services/players/players.service';
+import { GameFormService } from '@services/game-form/game-form.service';
 import { filter, map, Observable, startWith } from 'rxjs';
 import { GamePtsCalculatorService } from '@services/game-pts-calculator/game-pts-calculator.service';
 import { GameForm } from '@interfaces/game-form.type';

@@ -21,10 +21,6 @@ export class PlayersService {
     if (index >= 3) this.form.removeAt(index);
   }
 
-  public reset() {
-    this.form.reset();
-  }
-
   public disable() {
     this.form.disable();
   }
