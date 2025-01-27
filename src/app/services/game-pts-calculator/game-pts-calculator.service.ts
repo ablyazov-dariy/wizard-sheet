@@ -1,25 +1,22 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Trick } from '@interfaces/trick.interface';
-import { GameConfigService } from '@services/game-config/game-config.service';
+import { GameConfigInterface } from '@interfaces/game-config.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GamePtsCalculatorService {
-  gameConfigService = inject(GameConfigService);
-
-  calculate(data: Partial<Trick>[][]) {
+  calculate(data: Partial<Trick>[][], config: GameConfigInterface) {
     return data.reduce((acc, round) => {
       for (let i = 0; i < round.length; i++) {
         if (!acc[i]) acc[i] = 0;
-        acc[i] += this.calculateTrick(round[i]);
+        acc[i] += this.calculateTrick(round[i], config);
       }
       return acc;
     }, [] as number[]);
   }
 
-  private calculateTrick(trick: Partial<Trick>) {
-    const config = this.gameConfigService.config();
+  private calculateTrick(trick: Partial<Trick>, config: GameConfigInterface) {
     if (trick.tricksBid && trick.tricksBid === trick.tricksWon) {
       return config.baseScore + config.trickValue * trick.tricksWon;
     } else if (trick.tricksBid && trick.tricksWon) {

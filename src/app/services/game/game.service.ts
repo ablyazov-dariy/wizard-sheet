@@ -2,9 +2,10 @@ import { Injectable, signal } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import { PlayersService } from '@services/players/players.service';
 import { GameFormService } from '@services/game-form/game-form.service';
-import { filter, map, Observable, startWith } from 'rxjs';
+import { combineLatestWith, filter, map, Observable } from 'rxjs';
 import { GamePtsCalculatorService } from '@services/game-pts-calculator/game-pts-calculator.service';
 import { GameForm } from '@interfaces/game-form.type';
+import { GameConfigService } from '@services/game-config/game-config.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,7 @@ export class GameService {
     private playersService: PlayersService,
     private gameFormService: GameFormService,
     private ptsCalculatorService: GamePtsCalculatorService,
+    private gameConfigService: GameConfigService,
   ) {}
 
   get nameControls() {
@@ -32,8 +34,10 @@ export class GameService {
     if (!this._results$) {
       this._results$ = this.gameFormArray.valueChanges.pipe(
         filter(() => this.gameFormArray.valid),
-        map(data => this.ptsCalculatorService.calculate(data)),
-        startWith([]),
+        combineLatestWith(this.gameConfigService.config$),
+        map(([data, config]) =>
+          this.ptsCalculatorService.calculate(data, config),
+        ),
       );
     }
     return this._results$;
@@ -59,6 +63,7 @@ export class GameService {
       this.playersService.controls.length,
     );
   }
+
   public endGame() {
     this.playersService.enable();
     this.gameFormArray.clear();
