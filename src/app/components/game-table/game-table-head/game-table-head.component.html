@@ -2,7 +2,7 @@
   <th class="relative px-6 py-4">
     <button mat-button [matMenuTriggerFor]="menu">Menu</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
+      <button (click)="editConfig()" mat-menu-item>
         <mat-icon>settings</mat-icon>
         Game config
       </button>

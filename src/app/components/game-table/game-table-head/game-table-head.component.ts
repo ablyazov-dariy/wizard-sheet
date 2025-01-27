@@ -11,6 +11,7 @@ import { GameService } from '@services/game/game.service';
 import { EndGameConfirmDialogComponent } from '@components/end-game-confirm-dialog/end-game-confirm-dialog.component';
 
 import { take } from 'rxjs';
+import { GameConfigFormDialogComponent } from '@components/game-config-form-dialog/game-config-form-dialog.component';
 
 @Component({
   selector: 'app-game-table-head',
@@ -44,6 +45,19 @@ export class GameTableHeadComponent {
 
   endGame() {
     const dialogRef = this.dialog.open(EndGameConfirmDialogComponent, {
+      width: 'min(100%, 500px)',
+    });
+
+    dialogRef
+      .afterClosed()
+      .pipe(take(1))
+      .subscribe(result => {
+        if (result) this.gameService.endGame();
+      });
+  }
+
+  editConfig() {
+    const dialogRef = this.dialog.open(GameConfigFormDialogComponent, {
       width: 'min(100%, 500px)',
     });
 
