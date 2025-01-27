@@ -1,5 +1,11 @@
 import { inject, Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Trick } from '@interfaces/trick.interface';
 import { FormControls } from '@interfaces/util/form-controls.type';
 import { GameForm } from '@interfaces/game-form.type';
@@ -28,7 +34,10 @@ export class GameFormService {
   }
 
   private createTricksFormArray(players: number, round: number) {
-    const formArr = this.fb.array([] as FormGroup<FormControls<Trick>>[]);
+    const formArr = this.fb.array(
+      [] as FormGroup<FormControls<Trick>>[],
+      this.bidAmountValidator(round),
+    );
 
     while (formArr.length < players) {
       formArr.push(this.createTricksForm(round));
@@ -56,5 +65,18 @@ export class GameFormService {
         ],
       ],
     }) as FormGroup<FormControls<Trick>>;
+  }
+
+  private bidAmountValidator(round: number): ValidatorFn {
+    return ((control: FormArray) => {
+      const rowValue = control.controls.reduce((acc, control) => {
+        const controlValue = control.get('tricksBid')?.value ?? -99;
+        acc += +controlValue;
+        return acc;
+      }, 0);
+      return rowValue === round && round !== 1
+        ? { bitIsEqualToRound: true }
+        : null;
+    }) as ValidatorFn;
   }
 }
