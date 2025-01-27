@@ -9,19 +9,10 @@ import { GameStarterComponent } from './game-starter/game-starter.component';
 import { FormControls } from '@interfaces/util/form-controls.type';
 import { Trick } from '@interfaces/trick.interface';
 import { NgClass } from '@angular/common';
-import {
-  PreventInvalidInputDirective
-} from '@app/directives/prevent-invalid-input/prevent-invalid-input.directive';
 
 @Component({
   selector: 'app-game-table-body',
-  imports: [
-    FormsModule,
-    GameStarterComponent,
-    ReactiveFormsModule,
-    NgClass,
-    PreventInvalidInputDirective,
-  ],
+  imports: [FormsModule, GameStarterComponent, ReactiveFormsModule, NgClass],
   templateUrl: './game-table-body.component.html',
   styleUrl: './game-table-body.component.scss',
 })
