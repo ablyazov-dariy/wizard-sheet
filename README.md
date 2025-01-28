@@ -1,59 +1,26 @@
 # WizzSheet
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.7.
+This app helps you keep track of scores while playing the card game Wizard. It replaces the traditional paper score sheet, making it easier and faster to calculate points. **This app does not include the cards or the rules of the game itself.** You'll need a physical deck of Wizard cards and be familiar with the game's rules to play.
 
-## Development server
+## How to Use
 
-To start a local development server, run:
+1. **Adjust Player Count:** Use the "+" and "-" icons to add or remove players.
 
-```bash
-ng serve
-```
+2. **Enter Player Names:** Type in the name for each player.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+3. **Start the Game:** Click the blue "Start" button.
 
-## Code scaffolding
+4. **Enter Bids:** The first player's bid input field will be automatically focused. Enter the bid and press Tab to move to the next player's input. The app automatically manages input focus, ensuring it's always on the correct player's turn.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+5. **Enter Tricks:** After all bids are entered, enter the number of tricks each player actually took, following the same Tab-based input method as with bids.
 
-```bash
-ng generate component component-name
-```
+6. **Input Validation:**
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **Red Input Fields:** Indicate invalid characters or bid/trick amounts (e.g., non-numeric input, bids exceeding the remaining cards in the round).
+- **Red Rows:** Indicate that the total bids for a round match the total number of tricks, which is not allowed in Wizard.
 
-```bash
-ng generate --help
-```
+7. **Game Results:** The current scores and round information are displayed at the bottom of the screen.
 
-## Building
+8. **End Game:** To finish the game, open the menu and select "End Game," then confirm your choice.
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+9. **Game Configuration:** You can customize the point calculation rules by going to the menu and selecting "Game Config." This allows you to adjust the scoring system to your preferred variations.
