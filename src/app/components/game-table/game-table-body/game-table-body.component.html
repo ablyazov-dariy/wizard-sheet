@@ -8,10 +8,11 @@
   >
     <th class="px-6 py-4">{{ $index + 1 }}.</th>
     @for (wishForm of round.controls; track $index) {
+      @let colIndex = $index;
       <td>
         <input
           appPreventInvalidInput="^(\d+|)$"
-          [tabindex]="tricksWonTabIndex(rowIndex)"
+          [tabindex]="getTabIndex(rowIndex, colIndex, true)"
           type="text"
           inputmode="numeric"
           class="py-4 text-center font-medium text-gray-900 focus:bg-green-300 active:bg-green-300"
@@ -24,7 +25,7 @@
       <td>
         <input
           appPreventInvalidInput="^(\d+|)$"
-          [tabindex]="tricksBidTabIndex(rowIndex)"
+          [tabindex]="getTabIndex(rowIndex, colIndex, false)"
           autofocus
           type="text"
           inputmode="numeric"
