@@ -26,7 +26,6 @@ import { GameConfigFormDialogComponent } from '@components/dialogs/game-config-f
   styleUrl: './game-table-head.component.scss',
 })
 export class GameTableHeadComponent {
-  // todo: refactor
   public nameControls = input.required<FormControl<string | null>[]>();
   public showAlertInput = input.required<number>({
     alias: 'showAlert',
